@@ -16,23 +16,23 @@ const idArray = [];
 function appMenu() {
 
   function createManager() {
-    console.log("Please build your team");
+    console.log("Please build team.");
     inquirer.prompt([
       {
         type: "input",
         name: "managerName",
-        message: "What is your manager's name?",
+        message: "What is manager's name?",
         validate: answer => {
           if (answer !== "") {
             return true;
           }
-          return "Please enter at least one character.";
+          return "Must contain at least one character!";
         }
       },
       {
         type: "input",
         name: "managerId",
-        message: "What is your manager's id?",
+        message: "What is manager's id?",
         validate: answer => {
           const pass = answer.match(
             /^[1-9]\d*$/
@@ -40,13 +40,13 @@ function appMenu() {
           if (pass) {
             return true;
           }
-          return "Please enter a positive number greater than zero.";
+          return "Must contain a positive number greater than zero!";
         }
       },
       {
         type: "input",
         name: "managerEmail",
-        message: "What is your manager's email?",
+        message: "What is manager's email?",
         validate: answer => {
           const pass = answer.match(
             /\S+@\S+\.\S+/
@@ -54,13 +54,13 @@ function appMenu() {
           if (pass) {
             return true;
           }
-          return "Please enter a valid email address.";
+          return "Must contain a valid email address!";
         }
       },
       {
         type: "input",
         name: "managerOfficeNumber",
-        message: "What is your manager's office number?",
+        message: "What is manager's office number?",
         validate: answer => {
           const pass = answer.match(
             /^[1-9]\d*$/
@@ -68,7 +68,7 @@ function appMenu() {
           if (pass) {
             return true;
           }
-          return "Please enter a positive number greater than zero.";
+          return "Must contain a positive number greater than zero!";
         }
       }
     ]).then(answers => {
@@ -89,7 +89,7 @@ function appMenu() {
         choices: [
           "Engineer",
           "Intern",
-          "I don't want to add any more team members"
+          "Do not add more team members!"
         ]
       }
     ]).then(userChoice => {
@@ -111,37 +111,37 @@ function appMenu() {
       {
         type: "input",
         name: "engineerName",
-        message: "What is your engineer's name?",
+        message: "What is engineer's name?",
         validate: answer => {
           if (answer !== "") {
             return true;
           }
-          return "Please enter at least one character.";
+          return "Must contain at least one character!";
         }
       },
       {
         type: "input",
         name: "engineerId",
-        message: "What is your engineer's id?",
+        message: "What is engineer's id?",
         validate: answer => {
           const pass = answer.match(
             /^[1-9]\d*$/
           );
           if (pass) {
             if (idArray.includes(answer)) {
-              return "This ID is already taken. Please enter a different number.";
+              return "This ID is already taken! Must use a different number!";
             } else {
               return true;
             }
                         
           }
-          return "Please enter a positive number greater than zero.";
+          return "Must contain a positive number greater than zero.";
         }
       },
       {
         type: "input",
         name: "engineerEmail",
-        message: "What is your engineer's email?",
+        message: "What is engineer's email?",
         validate: answer => {
           const pass = answer.match(
             /\S+@\S+\.\S+/
@@ -149,18 +149,18 @@ function appMenu() {
           if (pass) {
             return true;
           }
-          return "Please enter a valid email address.";
+          return "Must contain a valid email address.";
         }
       },
       {
         type: "input",
         name: "engineerGithub",
-        message: "What is your engineer's GitHub username?",
+        message: "What is engineer's GitHub username?",
         validate: answer => {
           if (answer !== "") {
             return true;
           }
-          return "Please enter at least one character.";
+          return "Must contain at least one character.";
         }
       }
     ]).then(answers => {
@@ -176,37 +176,37 @@ function appMenu() {
       {
         type: "input",
         name: "internName",
-        message: "What is your intern's name?",
+        message: "What is intern's name?",
         validate: answer => {
           if (answer !== "") {
             return true;
           }
-          return "Please enter at least one character.";
+          return "Must contain at least one character.";
         }
       },
       {
         type: "input",
         name: "internId",
-        message: "What is your intern's id?",
+        message: "What is intern's id?",
         validate: answer => {
           const pass = answer.match(
             /^[1-9]\d*$/
           );
           if (pass) {
             if (idArray.includes(answer)) {
-              return "This ID is already taken. Please enter a different number.";
+              return "This ID is already taken! Must use a different number!";
             } else {
               return true;
             }
                         
           }
-          return "Please enter a positive number greater than zero.";
+          return "Must contain a positive number greater than zero.";
         }
       },
       {
         type: "input",
         name: "internEmail",
-        message: "What is your intern's email?",
+        message: "What is intern's email?",
         validate: answer => {
           const pass = answer.match(
             /\S+@\S+\.\S+/
@@ -214,18 +214,18 @@ function appMenu() {
           if (pass) {
             return true;
           }
-          return "Please enter a valid email address.";
+          return "Must contain a valid email address.";
         }
       },
       {
         type: "input",
         name: "internSchool",
-        message: "What is your intern's school?",
+        message: "What is intern's school?",
         validate: answer => {
           if (answer !== "") {
             return true;
           }
-          return "Please enter at least one character.";
+          return "Must contain at least one character.";
         }
       }
     ]).then(answers => {
@@ -237,7 +237,6 @@ function appMenu() {
   }
 
   function buildTeam() {
-    // Create the output directory if the output path doesn't exist
     if (!fs.existsSync(OUTPUT_DIR)) {
       fs.mkdirSync(OUTPUT_DIR)
     }
